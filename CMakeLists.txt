@@ -14,7 +14,7 @@ include_directories(libFTP libCNU libPCD8544 ${WIRINGPI_DIRS})
 add_executable(autoUploadData mainCNU.cpp libCNU/FileInfo.cpp libCNU/FileInfo.h libCNU/blockingQueue.h libCNU/checkFileUpdate.cpp libCNU/checkFileUpdate.h debug_macro.h libFTP/CurlHandle.cpp libFTP/CurlHandle.h libFTP/FTPClient.cpp libFTP/FTPClient.h libCNU/FTPUpload.cpp libCNU/FTPUpload.h)
 add_executable(mountfile mainMountFile.cpp libMountFile/mountManager.h libMountFile/mountManager.cpp debug_macro.h)
 add_executable(testGPIO libGPIO/main.cpp)
-add_executable(testlcd libGui/main.cpp libPCD8544/PCD8544.h libPCD8544/PCD8544.cpp)
+add_executable(testlcd libGui/main.cpp libPCD8544/PCD8544.h libPCD8544/PCD8544.cpp libGui/menuBar.cpp libGui/menuBar.h libGui/menuItem.cpp libGui/menuItem.h)
 
 target_link_libraries(autoUploadData ${CURL_LIBRARIES} stdc++fs ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(testGPIO ${WIRINGPI_LIBRARIES})
