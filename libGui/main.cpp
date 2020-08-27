@@ -3,10 +3,10 @@
 //
 
 #include <iostream>
+//#include "menuItem.h"
 #include "PCD8544.h"
 
-int main()
-{
+void testlcd(){
     if(wiringPiSetup() == -1){
         std::cout << "wiringPi error\n";
     }
@@ -15,5 +15,17 @@ int main()
     LCDshowLogo();
     delay(2000);
     LCDclear();
+    LCDsetCursor(0,0);
+    LCDdrawstring(0,0, "Be iu ngu chua");
+}
+void printxxx(){
+    std::cout << "abc" << "\n";
+}
 
+int main()
+{
+    testlcd();
+//    MenuItem test1 = MenuItem("abc");
+//    test1.setAction(printxxx);
+//    test1.action();
 }

@@ -7,13 +7,27 @@
 
 #include <string>
 #include <vector>
+#include <functional>
 
-class menuItem {
+class MenuItem {
 private:
     std::string _title;
-    std::vector<menuItem> _menuItems;
+    std::vector<MenuItem> _menuItems;
+    std::function<void ()> _action;
+
 
 public:
+    MenuItem(std::string title);
+
+    const std::string &getTitle() const;
+
+    const std::vector<MenuItem> &getMenuItems() const;
+
+    void addItem(const MenuItem &menuItems);
+
+    void setAction(std::function<void ()> action);
+
+    void action();
 };
 
 
