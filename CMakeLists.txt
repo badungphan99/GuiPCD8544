@@ -22,5 +22,5 @@ include_directories(libPCD8544 ${WIRINGPI_DIRS} libGui libButton)
 
 find_library(WIRINGPI_LIBRARIES NAMES wiringPi REQUIRED)
 #add_executable(testlcd libGui/main.cpp libPCD8544/PCD8544.h libPCD8544/PCD8544.cpp)
-add_executable(buildliblcd libGui/main.cpp libGui/Item.cpp libGui/Item.h libGui/MenuItems.cpp libGui/MenuItems.h libPCD8544/PCD8544.h libPCD8544/PCD8544.cpp libGui/Button.cpp libGui/Button.h libGui/GUIPCD8544.cpp libGui/GUIPCD8544.h libGui/Button.h libGui/Button.cpp)
+add_executable(buildliblcd libGui/main.cpp libGui/Item.cpp libGui/Item.h libGui/MenuItems.cpp libGui/MenuItems.h libPCD8544/PCD8544.h libPCD8544/PCD8544.cpp libGui/Button.cpp libGui/Button.h libGui/Button.h libGui/Button.cpp)
 target_link_libraries(buildliblcd ${WIRINGPI_LIBRARIES})

@@ -16,12 +16,12 @@ void MenuItems::show() {
     LCDclear();
     if(this->_curItem->getItems().size() <= 5){
         for(auto const &i : this->_curItem->getItems()){
-            LCDdrawstring_P(curX,curY,i.getTitle().c_str());
+            LCDdrawstring_P(curX,curY,i->getTitle().c_str());
             curY+=step;
         }
         LCDfillrect(0, this->_curPos * step, 84, 9, BLACK);
         LCDsetTextColor(WHITE);
-        LCDdrawstring_P(curX, this->_curPos * step + 1, this->_curItem->getItems()[this->_curPos].getTitle().c_str());
+        LCDdrawstring_P(curX, this->_curPos * step + 1, this->_curItem->getItems()[this->_curPos]->getTitle().c_str());
         LCDsetTextColor(BLACK);
         LCDdisplay();
         delay(200);
@@ -50,8 +50,8 @@ void MenuItems::right() {
 }
 
 void MenuItems::enter() {
-    if(!this->_curItem->getItems()[this->_curPos].getItems().empty()){
-        this->_curItem = &this->_curItem->getItems()[this->_curPos];
+    if(!this->_curItem->getItems()[this->_curPos]->getItems().empty()){
+        this->_curItem = this->_curItem->getItems()[this->_curPos];
         this->_curPos = 0;
         show();
     }

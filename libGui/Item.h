@@ -14,7 +14,7 @@ class Item {
 private:
     Item *_parent;
     std::string _title;
-    std::vector<Item> _listItems;
+    std::vector<Item *> _listItems;
     std::function<void ()> _action;
 
 public:
@@ -26,7 +26,7 @@ public:
 
     void addItem(Item *item);
 
-    std::vector<Item> getItems();
+    std::vector<Item *> getItems();
 
     void setAction(std::function<void ()> action);
 

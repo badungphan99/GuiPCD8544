@@ -23,10 +23,10 @@ void Item::action() {
 
 void Item::addItem(Item *item) {
     item->_parent = this;
-    this->_listItems.push_back(*item);
+    this->_listItems.push_back(item);
 }
 
-std::vector<Item> Item::getItems() {
+std::vector<Item *> Item::getItems() {
     return this->_listItems;
 }
 
