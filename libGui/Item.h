@@ -8,22 +8,25 @@
 #include <string>
 #include <vector>
 #include <functional>
+#include <utility>
 
-class MenuItem {
+class Item {
 private:
+    Item *_parent;
     std::string _title;
-    std::vector<MenuItem> _menuItems;
+    std::vector<Item> _listItems;
     std::function<void ()> _action;
 
-
 public:
-    MenuItem(std::string title);
+    Item(std::string title);
+
+    Item *getParent();
 
     const std::string &getTitle() const;
 
-    const std::vector<MenuItem> &getMenuItems() const;
+    void addItem(Item *item);
 
-    void addItem(const MenuItem &menuItems);
+    std::vector<Item> getItems();
 
     void setAction(std::function<void ()> action);
 
