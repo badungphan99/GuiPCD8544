@@ -25,7 +25,7 @@ Lesser General Public License for more details.
 #ifndef LIB_PCD8544_H
 #define LIB_PCD8544_H
 
-#include <stdint.h>
+#include <cstdint>
 #include <wiringPi.h>
 
 #define BLACK 1
@@ -64,7 +64,7 @@ Lesser General Public License for more details.
 #define LSBFIRST  0
 #define MSBFIRST  1
 
- void LCDInit(uint8_t SCLK = 0, uint8_t DIN = 1, uint8_t DC = 2, uint8_t CS = 3, uint8_t RST = 4, uint8_t contrast = 50);
+ void LCDInit(uint8_t SCLK, uint8_t DIN, uint8_t DC, uint8_t CS, uint8_t RST, uint8_t contrast);
  void LCDcommand(uint8_t c);
  void LCDdata(uint8_t c);
  void LCDsetContrast(uint8_t val);

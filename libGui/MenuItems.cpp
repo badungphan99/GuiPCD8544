@@ -10,12 +10,23 @@ MenuItems::MenuItems(Item *item) {
 }
 
 void MenuItems::show() {
-    std::cout << this->_curItem->getTitle() << "\nlist item: \n";
-    for(auto &i : this->_curItem->getItems()){
-        std::cout << i.getTitle() << "\n";
+    int curX = 1;
+    int curY = 1;
+    int step = 9;
+    LCDclear();
+    if(this->_curItem->getItems().size() <= 5){
+        for(auto const &i : this->_curItem->getItems()){
+            LCDdrawstring_P(curX,curY,i.getTitle().c_str());
+            curY+=step;
+        }
+        LCDfillrect(0, this->_curPos * step, 84, 9, BLACK);
+        LCDsetTextColor(WHITE);
+        LCDdrawstring_P(curX, this->_curPos * step + 1, this->_curItem->getItems()[this->_curPos].getTitle().c_str());
+        LCDsetTextColor(BLACK);
+        LCDdisplay();
+        delay(200);
     }
-    std::cout << "item select: " << this->_curItem->getItems()[this->_curPos].getTitle() << "\n";
-    std::cout << "----\n";
+
 }
 
 void MenuItems::up() {
@@ -39,13 +50,28 @@ void MenuItems::right() {
 }
 
 void MenuItems::enter() {
-    this->_curItem = &this->_curItem->getItems()[this->_curPos];
-    this->_curPos = 0;
-    show();
+    if(!this->_curItem->getItems()[this->_curPos].getItems().empty()){
+        this->_curItem = &this->_curItem->getItems()[this->_curPos];
+        this->_curPos = 0;
+        show();
+    }
 }
 
 void MenuItems::back() {
-    this->_curItem = this->_curItem->getParent();
-    this->_curPos = 0;
-    show();
+    if(this->_curItem->getParent() != nullptr) {
+        this->_curItem = this->_curItem->getParent();
+        this->_curPos = 0;
+        show();
+    }
+}
+
+int MenuItems::initLCD(uint8_t SCLK, uint8_t DIN, uint8_t DC, uint8_t CS, uint8_t RST, uint8_t contrast) {
+    if(wiringPiSetup() == -1){
+        std::cout << "wiringPi error\n";
+    }
+    LCDInit(SCLK, DIN, DC, CS, RST, contrast);
+    LCDclear();
+    LCDshowLogo();
+    delay(1000);
+    return 0;
 }

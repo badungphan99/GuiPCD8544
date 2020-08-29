@@ -3,31 +3,17 @@
 //
 
 #include <iostream>
-#include "GuiPCD8544.h"
-//#include "PCD8544.h"
-
-//void testlcd(){
-//    if(wiringPiSetup() == -1){
-//        std::cout << "wiringPi error\n";
-//    }
-//    LCDInit();
-//    LCDclear();
-//    LCDshowLogo();
-//    delay(2000);
-//    LCDclear();
-//    LCDsetCursor(0,0);
-//    LCDdrawstring(0,0, "Be iu ngu chua");
-//}
-void printxxx(){
-    std::cout << "abc" << "\n";
-}
+#include "MenuItems.h"
+#include "Button.h"
+#include <sys/sysinfo.h>
 
 int main()
 {
 //    testlcd();
     Item test0 = Item("root");
-    Item test1 = Item("sub1");
-    Item test2 = Item("sub2");
+    Item test1 = Item("Setting");
+    Item test2 = Item("Info");
+    Item test3 = Item("File Manager");
     Item test21 = Item("sub2.1");
     Item test211 = Item("sub2.1.1");
 
@@ -37,16 +23,20 @@ int main()
 
     test0.addItem(&test1);
     test0.addItem(&test2);
+    test0.addItem(&test3);
 
 
-//    std::cout << test2.getItems()[0].getParent().getParent().getTitle() << "\n";
-//
-    GuiPCD8544 guiPcd8544 = GuiPCD8544(&test0);
+    MenuItems guiPcd8544 = MenuItems(&test0);
+    guiPcd8544.initLCD();
+
     guiPcd8544.show();
-    std::cout << "1\n";
-    guiPcd8544.down();
-    std::cout << "2\n";
-    guiPcd8544.enter();
-    std::cout << "3\n";
-    guiPcd8544.back();
+
+    Button::init();
+    while (1) {
+
+        if (Button::buttonDown())guiPcd8544.down();
+        if (Button::buttonUp())guiPcd8544.up();
+        if (Button::buttonEnter())guiPcd8544.enter();
+        if (Button::buttonBack())guiPcd8544.back();
+    }
 }

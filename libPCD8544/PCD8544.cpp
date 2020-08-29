@@ -508,6 +508,14 @@ void LCDdrawchar(uint8_t x, uint8_t y, char c)
 	updateBoundingBox(x, y, x+5, y + 8);
 }
 
+void LCDsetTextSize(uint8_t s){
+    textsize = s;
+}
+
+void LCDsetTextColor(uint8_t c){
+    textcolor = c;
+}
+
 void LCDwrite(uint8_t c)
 {
 	if (c == '\n')
