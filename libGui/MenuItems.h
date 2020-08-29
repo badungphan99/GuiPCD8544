@@ -6,7 +6,7 @@
 #define AUTOUPLOADDATA_MENUITEMS_H
 
 #include "Item.h"
-#include "../debug_macro.h"
+#include <iostream>
 #include "../libPCD8544/PCD8544.h"
 
 class MenuItems {
